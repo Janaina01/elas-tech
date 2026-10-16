@@ -27,11 +27,23 @@ public class Petshop {
                             System.out.println("Cadastro cheio!");
                             break;
                         }
-                        Pet meuPet = new Pet();
+
+                        System.out.println("Informe a espécie:");
+                        String especie = sc.next();
+
+                        Pet meuPet;
+                        if (especie.equalsIgnoreCase("Cachorro")) {
+                            meuPet = new Cachorro();
+                        } else if (especie.equalsIgnoreCase("Gato")) {
+                            meuPet = new Gato();
+                        } else {
+                            meuPet = new Pet();
+                        }
+
+                        meuPet.especie = especie;
+
                         System.out.println("Informe o nome do pet:");
                         meuPet.nome = sc.next();
-                        System.out.println("Informe a espécie:");
-                        meuPet.especie = sc.next();
 
                         System.out.println("Informe o peso do pet (kg): ");
                         meuPet.peso = sc.nextDouble();
@@ -50,11 +62,20 @@ public class Petshop {
                             System.out.println("--- PETS CADASTRADOS ---");
 
                             for (int i = 0; i < total; i++) {
+                                System.out.println("---");
                                 System.out.printf("%s (%s) - %.1f kg - Porte %s%n",
                                         listaPets[i].nome,
                                         listaPets[i].especie,
                                         listaPets[i].peso,
                                         listaPets[i].porte);
+
+                                        listaPets[i].emitirSom();
+
+                                        mostrarFicha(listaPets[i]);
+
+                                System.out.println("---");
+
+                                mostrarFicha(listaPets[i], "=== FICHA DO PET ===");
                             }
 
                         }
@@ -89,8 +110,8 @@ public class Petshop {
 
                         System.out.println("--- ESPÉCIES CADASTRADAS ---");
 
-                        for (String especie : especies) {
-                            System.out.println("- " +  especie);
+                        for (String especieCadastrada : especies) {
+                            System.out.println("- " +  especieCadastrada);
                         }
                         System.out.println("Total de espécies diferentes: " + especies.size());
 
@@ -142,5 +163,15 @@ public class Petshop {
             }
         }
 
+    }
+    static void mostrarFicha(Pet pet) {
+        System.out.println("Nome: " + pet.nome);
+    }
+    static void mostrarFicha(Pet pet, String titulo){
+        System.out.println(titulo);
+        System.out.println("Nome: " + pet.nome);
+        System.out.println("Especie: " + pet.especie);
+        System.out.printf("Peso: %.1f kg%n", pet.peso);
+        System.out.println("Porte: " + pet.porte);
     }
 }
