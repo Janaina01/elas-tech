@@ -9,11 +9,14 @@ public class Pet {
     public String definirPorte(){
         if (peso < 10) {
         return porte = "Pequeno";
-    }  else if (peso < 25) {
+    } else if (peso < 25) {
         return porte = "Médio";
     } else {
         return porte = "Grande";
+        }
     }
 
+    public void emitirSom() {
+        System.out.println(nome + " faz um som genérico.");
     }
 }
