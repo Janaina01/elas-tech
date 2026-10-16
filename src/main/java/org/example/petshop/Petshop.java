@@ -1,24 +1,25 @@
 package org.example.petshop;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 public class Petshop {
     static void main() {
         Scanner sc = new Scanner(System.in);
 
         Pet[] listaPets = new Pet[5];
+        ArrayDeque<String> filaBanho = new ArrayDeque<>();
 
         int opcao = -1;
         int total = 0;
 
         while (opcao != 0) {
             System.out.println("=== PETSHOP ===\n1 - Cadastrar pet\n2 - Listar pets\n3 - Buscar pet pelo nome\n" +
-                    "0 - Sair");
+                    "4 - Listar espécies diferentes\n5 - Entrar na fila de banho\n6- Atender o próximo pet\n" +
+                    "7 - Executar serviços\n0 - Sair");
 
             try {
-            opcao = sc.nextInt();
-            sc.nextLine();
+                opcao = sc.nextInt();
+                sc.nextLine();
 
                 switch (opcao) {
                     case 1:
@@ -79,6 +80,56 @@ public class Petshop {
                             System.out.println("Pet não encontrado!");
                         }
                         break;
+                    case 4:
+                        HashSet<String> especies = new HashSet<>();
+
+                        for (int i = 0; i < total; i++) {
+                            especies.add(listaPets[i].especie);
+                        }
+
+                        System.out.println("--- ESPÉCIES CADASTRADAS ---");
+
+                        for (String especie : especies) {
+                            System.out.println("- " +  especie);
+                        }
+                        System.out.println("Total de espécies diferentes: " + especies.size());
+
+                        break;
+                    case 5:
+                        System.out.println("Nome do pet pra entrar na fila: ");
+                        String fila = sc.nextLine();
+
+                        filaBanho.add(fila);
+
+                        System.out.println(fila + " entrou na fila.");
+                        System.out.println("Fila agora: " +  filaBanho);
+                        break;
+                    case 6:
+                        if (filaBanho.isEmpty()) {
+                            System.out.println("A fila está vazia!");
+                        } else {
+                            System.out.println("Próximo da fila: " + filaBanho.peek());
+
+                            String proximo = filaBanho.poll();
+
+                            System.out.println("Atendendo " + proximo + "...");
+                            System.out.println("Fila agora: " + filaBanho);
+                        }
+                        break;
+                    case 7:
+                        System.out.println("Nome do pet:");
+                        String nomeServico = sc.nextLine();
+
+                        ArrayList<Servico> servicos = new ArrayList<>();
+
+                        servicos.add(new Banho());
+                        servicos.add(new Tosa());
+                        servicos.add(new Consulta());
+
+                        for (Servico servico : servicos) {
+                            servico.executar(nomeServico);
+                        }
+                        break;
                     case 0:
                         System.out.println("Ok, até mais tarde!");
                         break;
@@ -93,4 +144,3 @@ public class Petshop {
 
     }
 }
-//Parei na 11
