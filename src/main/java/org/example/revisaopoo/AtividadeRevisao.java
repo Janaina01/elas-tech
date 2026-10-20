@@ -1,4 +1,4 @@
-package org.example.revisao3;
+package org.example.revisaopoo;
 
 public class AtividadeRevisao {
     public static void main(String[] args) {
@@ -66,7 +66,7 @@ public class AtividadeRevisao {
         }*/
         System.out.println("c) Princípio violado: D - Inversão de Dependência.\nA dependência com a implementação do MySQLRepositorio dificulta a troca de banco de dados, pois teria que modificar diretamente a classe. Para corrigir, podemos utilizar uma interface para implementar diferentes bancos sem alterar a lógica de PedidoService\n") ;
 
-        System.out.println("---Questão 3: Getters e Setters---");
+        System.out.println("---Questão 3: Getters e Setters---\n");
 
         /*Crie uma classe Produto com os atributos privados nome (String), preco (double) e quantidade (int).
 
@@ -75,17 +75,38 @@ public class AtividadeRevisao {
                 O setter de quantidade não deve aceitar valores negativos.
         No main, crie um produto, preencha os atributos pelos setters, tente colocar um preço negativo, e imprima os dados usando os getters.*/
 
-        System.out.println("---Questão 4: Modificadores de acesso---");
+        Produto produto = new Produto();
 
-        System.out.println("Explique quem pode acessar um atributo ou método declarado com cada modificador:\n" +
-                "\n" +
-                "        a) private\n" +
-                "        b) default (sem modificador)\n" +
-                "        c) protected\n" +
-                "        d) public");
+        produto.setNome("Caderno");
+        produto.setPreco(49.90); //utilizando preço válido
+        produto.setQuantidade(3);
+
+        produto.setPreco(-10);  //utilizando preço inválido
+
+        System.out.println("Nome do produto: " + produto.getNome());
+        System.out.println("Preço do produto: " + produto.getPreco());
+        System.out.println("Quantidade do produto: " + produto.getQuantidade());
 
 
-        System.out.println("---Questão 5: Classe abstrata---");
+        System.out.println("\n---Questão 4: Modificadores de acesso---\n");
+
+        System.out.println("Explique quem pode acessar um atributo ou método declarado com cada modificador:\n");
+
+        System.out.println("a) private:");
+        System.out.println("Só pode ser acessado dentro da própria classe em que foi declarado.\n");
+
+        System.out.println("b) default (sem modificador):");
+        System.out.println("Pode ser acessado por qualquer classe que esteja no mesmo package.\n");
+
+        System.out.println("c) protected:");
+        System.out.println("Pode ser acessado pela própria classe, por classes do mesmo package e " +
+                "pelas classes filhas (herança).\n");
+
+        System.out.println("d) public:");
+        System.out.println("Pode ser acessado por qualquer classe, inclusive de outros packages.\n");
+
+
+        System.out.println("---Questão 5: Classe abstrata---\n");
 
         /*a) Crie uma classe abstrata Forma com:
 
@@ -100,8 +121,16 @@ public class AtividadeRevisao {
 
         d) Agora tente escrever Forma f = new Forma("teste");. O que acontece? Por quê?*/
 
+        Retangulo retangulo = new Retangulo("Retângulo", 5, 3);
+        retangulo.exibirNome();
+        System.out.println("Área: " + retangulo.calcularArea());
 
-        System.out.println("---Questão 6: Exercício integrado (Sistema de Funcionários)---");
+        System.out.println("\nAo tentar escrever Forma f = new Forma(\"teste\"); o código apresenta erro, " +
+                "porque as classes abstratas não podem ser instanciadas diretamente, " +
+                "elas servem de base pra outras classes herdarem seus atributos e métodos e implementarem seus métodos.\n");
+
+
+        System.out.println("---Questão 6: Exercício integrado (Sistema de Funcionários)---\n");
 
         /*Faça em etapas.
 
@@ -128,5 +157,31 @@ public class AtividadeRevisao {
                 Etapa 6. No main, crie um desenvolvedor e um gerente, pague os dois usando uma folha com notificação por email, e depois crie outra folha com notificação por SMS.
 
         Pergunta final: quais princípios e conceitos de POO você usou em cada etapa?*/
+
+        Desenvolvedor dev = new Desenvolvedor("Ana", 5000);
+        Gerente gt = new Gerente("Carlos", 8000);
+
+        //Notificação por e-mail
+        NotificadorEmail email = new NotificadorEmail();
+        FolhaPagamento folhaEmail = new FolhaPagamento(email);
+
+        folhaEmail.pagar(dev);
+        folhaEmail.pagar(gt);
+
+        System.out.println("");
+
+        //Notificação por SMS
+        NotificadorSms sms = new NotificadorSms();
+        FolhaPagamento folhaSms = new FolhaPagamento(sms);
+
+        folhaSms.pagar(dev);
+        folhaSms.pagar(gt);
+
+        System.out.println("\nPrincípios e conceitos de POO utilizados:");
+        System.out.println("Etapa 1: abstração, encapsulamento, construtor, getters e setter.\n" +
+                "Etapa 2: abstração (método abstrato calcularSalario()).\nEtapa 3: herança, sobrescrita e polimorfismo " +
+                "(classes Desenvolvedor e Gerente).\nEtapa 4: interface, implementação e polimorfismo.\n" +
+                "Etapa 5: polimorfismo e inversão de dependência (SOLID) - FolhaPagamento depende da interface Notificador" +
+                ".\nEtapa 6: polimorfismo - diferentes funcionários e diferentes formas de notificação.");
     }
 }
