@@ -63,7 +63,7 @@ public class AtividadeSingleton {
 
         System.out.println("Total de visitas: " + pagina2.getTotal());
 
-        System.out.println("---Questão 7---\n");
+        System.out.println("\n---Questão 7---\n");
 
         /*7. Crie uma classe Singleton chamada Carrinho que:
         -tenha um atributo quantidadeItens, começando em 0;
@@ -75,5 +75,15 @@ public class AtividadeSingleton {
         Exemplo de saída esperada:
 
         Itens no carrinho: 4*/
+        Carrinho telaProdutos =  Carrinho.getInstancia();
+        Carrinho telaPromocoes = Carrinho.getInstancia();
+
+        telaProdutos.adicionatItem();
+        telaProdutos.adicionatItem();
+
+        telaPromocoes.adicionatItem();
+        telaPromocoes.adicionatItem();
+
+        System.out.println("Itens no carrinho: " + telaPromocoes.getQuantidadeItens());
     }
 }
