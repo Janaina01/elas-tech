@@ -1,6 +1,6 @@
 package org.example.aula22.decorator;
 
-public class ComLeite extends CafeDecorator{
+public class ComLeite extends CafeDecorator {
 
     public ComLeite(Cafe cafe) {
         super(cafe);
