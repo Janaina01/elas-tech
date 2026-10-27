@@ -72,7 +72,7 @@ public class AtividadeTestesUnitarios {
                 "Refatoração sem medo: Porque primeiro precisamos garantir que o código funciona e atende ao esperado." +
                 "\nDepois podemos melhorar e organizar o código sem alterar o funcionamento.\n");
 
-        System.out.println("---QUESTÃO 6---");
+        System.out.println("---Atividade Prática: Meu Primeiro TDD com JUnit 5---\n");
         /*/Atividade Prática: Meu Primeiro TDD com JUnit 5/
          Mão na massa: A Calculadora de Descontos
         Vamos desenvolver uma classe CalculadoraDesconto usando os 3 passos (AAA) do JUnit!
