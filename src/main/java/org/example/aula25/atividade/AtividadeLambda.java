@@ -9,8 +9,10 @@ public class AtividadeLambda {
         acao.executar();
     }
     public static void mostrarResultado(Operacao op, int valor){
+
         System.out.println(op.aplicar(valor));
     }
+
     public static void executarSe(Condicao cond, int valor, Acao acao){
         if (cond.testar(valor)){
             acao.executar();
